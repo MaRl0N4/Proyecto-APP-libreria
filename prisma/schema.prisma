@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Editorial {
+  id        Int     @id @default(autoincrement())
+  ruc       String  @db.VarChar(20)
+  nombre    String  @db.VarChar(75)
+  telefono  String  @db.VarChar(12)
+  email     String  @db.VarChar(35)
+  sitio_web String  @db.VarChar(50)
+  estado    String  @db.VarChar(15)
+  libros    Libro[]
+}
+
+model Autor {
+  id         Int           @id @default(autoincrement())
+  nombre     String        @db.VarChar(60)
+  email      String        @db.VarChar(50)
+  estado     String        @db.VarChar(15)
+  autorLibro Autor_Libro[]
+}
+
+model Libro {
+  isbn              Int             @id
+  titulo            String          @db.VarChar(50)
+  editorialId       Int?
+  precio            Float
+  fecha_publicacion DateTime
+  cantidad_bodega   Int
+  estado            String          @db.VarChar(15)
+  categoria         String          @db.VarChar(60)
+  best_seller       Boolean         @default(false)
+  tipo              String          @db.VarChar(20)
+  autorLibro        Autor_Libro[]
+  detallesVenta     Detalle_Venta[]
+  editorial         Editorial?      @relation(fields: [editorialId], references: [id])
+}
+
+model Autor_Libro {
+  autorId Int
+  libroId Int
+  autor   Autor @relation(fields: [autorId], references: [id], onDelete: Cascade)
+  libro   Libro @relation(fields: [libroId], references: [isbn], onDelete: Cascade)
+
+  @@id([autorId, libroId])
+}
+
+model Cliente {
+  id        Int     @id @default(autoincrement())
+  nombres   String  @db.VarChar(30)
+  apellidos String  @db.VarChar(30)
+  cedula    String  @db.VarChar(15)
+  telefono  String  @db.VarChar(15)
+  direccion String  @db.VarChar(50)
+  estado    String  @db.VarChar(15)
+  ventas    Venta[]
+}
+
+model Venta {
+  id         Int             @id @default(autoincrement())
+  fecha      DateTime        @default(now())
+  total      Decimal         @db.Decimal(10, 2)
+  id_cliente Int?
+  forma_pago String?         @db.VarChar(20)
+  detalles   Detalle_Venta[]
+  cliente    Cliente?        @relation(fields: [id_cliente], references: [id])
+}
+
+model Detalle_Venta {
+  id              Int   @id @default(autoincrement())
+  ventaId         Int
+  precio_unitario Float
+  subtotal        Float
+  cantidad        Int
+  libroIsbn       Int
+  libro           Libro @relation(fields: [libroIsbn], references: [isbn], onDelete: SetNull)
+  venta           Venta @relation(fields: [ventaId], references: [id], onDelete: Cascade)
+}
+
+
+
+//ESTOS MODELOS SON PARA LAS CONSULTAS ESPECIALES-LOS QUITAN ANTES DE HACER EL MIGRATION, LUEGO LOS PONEN DE NUEVO
+
+model LibrosBestSellerAutores{
+  isbn Int 
+  titulo String 
+  categoria String 
+  autores String
+  @@id([isbn]) 
+  @@map("libros_best_seller_autores")
+}
+
+
+
+model LibrosMasVendidosDetalle {
+  isbn            Int     @id
+  titulo          String
+  autor           String
+  editorial       String?
+  precio          Float
+  tipo            String
+  best_seller     Boolean
+  categoria       String
+  cantidad_vendida Int
+
+  @@map("libros_mas_vendidos_detalle")
+}
+
+
+
+
+model VentasTotales {
+  venta_id Int    @id
+  fecha    DateTime
+  total    Decimal @db.Decimal(10, 2)
+
+  @@map("ventas_totales")
+}
+
+
+
+
+model LibrosBajaRotacionConVentas {
+  isbn             Int @id
+  titulo           String
+  cantidad_ventas  Int
+
+  @@map("libros_baja_rotacion_con_ventas")
+}
