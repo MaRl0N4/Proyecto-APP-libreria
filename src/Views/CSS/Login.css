@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fff;
+}
+
+.container {
+  display: flex;
+  max-width: 1000px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.login-container {
+  background: #fff;
+  padding: 40px;
+  width: 50%;
+}
+
+.image-container {
+  background: #ffefe5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.image-container img {
+  width: 80%;
+}
+
+.form-box h2.logo {
+  color: #f26d50;
+  font-weight: bold;
+}
+
+.form-box h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.form-box p.welcome {
+  color: #888;
+  margin: 10px 0;
+}
+
+.form-box label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #fff1ee;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.password-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-link {
+  font-size: 12px;
+  color: #888;
+  text-decoration: none;
+}
+
+.login-button {
+  background: #f26d50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: #d8583d;
+}
+
+.register-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #999;
+}
+
+.register-text a {
+  color: #f26d50;
+  text-decoration: none;
+}
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* espacio para el botón */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}

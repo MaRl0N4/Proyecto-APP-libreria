@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Autores</title>
+    <link rel="stylesheet" href="CSS/autor.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="IMG/logo.png" alt="Logo">
+        </div>
+         <a class="menu" href="index.html"> MENU </a> 
+        
+    </header>
+
+    <main class="contenido">
+        <div id="message" class="message"></div>
+        
+        <section class="consulta">
+            <div class="titulo-consulta">
+                <label>Formulario Autores</label>
+                <button class="btn-consultar">
+                    CONSULTAR <span></span>
+                </button>
+            </div>
+            <div class="buscar-id">
+                <label for="buscar">Buscar:</label>
+                <input type="text" id="buscar">
+            </div>
+        </section>
+
+        <section class="lista">
+            <p>Lista Autores:</p>
+            <table id="autoresTable" class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Estado</th>
+                        <th class="acciones">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" class="no-data-message"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="acciones-finales">
+            <button class="btn-agregar" id="openAddAutorModal">AGREGAR</button>
+        </section>
+    </main>
+
+    <div id="autorModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Agregar Autor</h2>
+            <form id="autorForm">
+                <input type="hidden" id="autorId">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" class="form-control">
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="button" id="closeModalButton" class="btn btn-danger">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+     <script>
+    // Mostrar / ocultar menú de usuario
+    document.getElementById("userBtn").addEventListener("click", function () {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    // Cierra el menú si se hace clic fuera
+    window.addEventListener("click", function (e) {
+      if (!e.target.matches('#userBtn')) {
+        document.getElementById("dropdownMenu").style.display = "none";
+      }
+    });
+  </script>
+    <script src="JS/autor.js"></script>
+</body>
+</html>

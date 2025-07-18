@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Facturas</title>
+  <link rel="stylesheet" href="CSS/factura.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">
+    <img src="IMG/logo.png" alt="Logo">
+  </div>
+  <a class="menu" href="index.html"> MENU </a>
+  
+</header>
+
+<main class="contenido">
+
+  <section class="consulta">
+    <div class="titulo-consulta">
+      <label>FACTURAS</label>
+      <button id="btn-consultar" class="btn-consultar">
+        CONSULTAR<span></span> 
+      </button>
+    </div>
+
+    <div class="buscar-id">
+        <label for="buscar">BUSCAR POR ID:</label>
+        <input type="text" id="buscar" placeholder="ej: 1"  >
+      </div>
+  </section>
+
+  <section class="lista">
+    <p>Lista de facturas:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Libro</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Total</th>
+          <th class="acciones">Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="acciones-finales">
+    <button class="btn-agregar">AGREGAR</button>
+  </section>
+
+  <div id="modal-agregar" class="modal" style="display: none;">
+  <div class="modal-content">
+
+    <!-- Título y botón cerrar -->
+    <span id="cerrar-modal-agregar" class="cerrar">&times;</span>
+    <h2>Registrar Venta</h2>
+
+    <!-- Área desplazable del formulario -->
+    <div class="modal-body">
+      <form id="form-agregar">
+
+        <!-- Selección de cliente -->
+        <label for="idcliente">Cliente:</label>
+        <select id="idcliente" name="idcliente" required>
+          <option value="">Seleccione un cliente</option>
+        </select>
+
+        <!-- 📚 Contenedor dinámico de libros -->
+        <div id="librosContainer"></div>
+        <button type="button" id="btn-agregar-libro">Agregar otro libro</button>
+          <P></P>
+        <!-- Fecha de la venta -->
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required readonly>
+
+        <!-- Tipo de pago -->
+        <label for="tipo_pago">Tipo de Pago:</label>
+        <select id="tipo_pago" name="tipo_pago" required>
+          <option value="">Seleccione una opción</option>
+          <option value="Efectivo">Efectivo</option>
+          <option value="Tarjeta">Tarjeta</option>
+          <option value="Transferencia">Transferencia</option>
+        </select>
+
+      </form>
+    </div>
+
+    <!-- Botones siempre visibles abajo -->
+    <div class="modal-footer">
+      <button type="submit" id="guardar-btn" form="form-agregar">Guardar</button>
+      <button type="button" id="cancelar-agregar">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+ <!-- Modal Detalle -->
+<div id="modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h3>Detalle de Factura</h3>
+
+    <p><strong>Cliente:</strong> <span id="detalle-cliente"></span></p>
+    <p><strong>ID Cliente:</strong> <span id="detalle-idcliente"></span></p>
+    <p><strong>Fecha:</strong> <span id="detalle-fecha"></span></p>
+    <p><strong>Tipo de pago:</strong> <span id="detalle-tipopago"></span></p>
+
+    <!-- 📚 Detalles múltiples de libros en formato tabla -->
+    <table class="detalle-libros-tabla">
+      <thead>
+        <tr>
+          <th>Libro</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="detalle-libros"></tbody>
+    </table>
+
+    <button id="cerrar-modal">Cerrar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Modal Factura PDF -->
+<div id="modal-factura" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h3>Factura</h3>
+
+    <p><strong>ID:</strong> <span id="f-id"></span></p>
+    <p><strong>Cliente:</strong> <span id="f-cliente"></span></p>
+    <p><strong>ID Cliente:</strong> <span id="f-idcliente"></span></p>
+    <p><strong>Fecha:</strong> <span id="f-fecha"></span></p>
+    <p><strong>Tipo de pago:</strong> <span id="f-tipopago"></span></p>
+
+    <!-- 📚 Tabla de libros vendidos -->
+    <table class="detalle-libros-tabla">
+      <thead>
+        <tr>
+          <th>Libro</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="factura-libros"></tbody>
+    </table>
+
+    <p><strong>IVA (15%):</strong> <span id="f-iva"></span></p>
+    <p><strong>Total:</strong> <span id="f-total" class="resaltado-total"></span></p>
+
+    <button id="btn-generar-pdf">Descargar PDF</button>
+    <button id="cerrar-modal-factura">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+</main>
+
+<!-- Select oculto para plantilla de libros -->
+<select id="articulo" style="display: none;"></select>
+<script src="JS/factura.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+  // Mostrar / ocultar menú de usuario
+  document.getElementById("userBtn").addEventListener("click", function () {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  // Cerrar el menú al hacer clic fuera de él
+  window.addEventListener("click", function (event) {
+    if (!event.target.matches("#userBtn")) {
+      const dropdowns = document.getElementsByClassName("dropdown");
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.style.display === "block") {
+          openDropdown.style.display = "none";
+        }
+      }
+    }
+  });
+
+  
+
+</script>
+</body>
+</html>

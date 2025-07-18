@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="wid th=device-width, initial-scale=1.0">
+  <title>Gestión</title>
+  <link rel="stylesheet" href="CSS/index.css"/>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+  <img src="IMG/logo.png" alt="Logo">
+    </div>
+
+   
+    <!-- Botón de usuario con menú desplegable -->
+   
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h3>Gestión de Editoriales</h3>
+      <a href="editorial.html" class="gestion-btn">
+        <img src="IMG/editorial.png" alt="Editoriales">
+      </a>
+    </div>
+    <div class="card">
+      <h3>Gestión de Libros</h3>
+      <a href="libro.html" class="gestion-btn">
+        <img src="IMG/libro.png" alt="Libros">
+      </a>
+    </div>
+    <div class="card">
+      <h3>Gestión de Autores</h3>
+      <a href="autor.html" class="gestion-btn">
+        <img src="IMG/autor.png" alt="Autores">
+      </a>
+    </div>
+    <div class="card">
+      <h3>Gestión de Facturas</h3>
+      <a href="factura.html" class="gestion-btn">
+          <img src="IMG/factura.png" alt="Facturas">
+      </a>
+    </div>
+    <div class="card">
+      <h3>Gestión de Reportes</h3>
+      <a href="reportes.html" class="gestion-btn">
+        <img src="IMG/reporte.png" alt="Reportes">
+      </a>
+    </div>
+    <div class="card">
+      <h3>Gestión de Clientes</h3>
+      <a href="cliente.html" class="gestion-btn">
+        <img src="IMG/cliente.png" alt="Clientes">
+      </a>
+  </main>
+
+  <script>
+    // Mostrar / ocultar menú de usuario
+    document.getElementById("userBtn").addEventListener("click", function () {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    // Cierra el menú si se hace clic fuera
+    window.addEventListener("click", function (e) {
+      if (!e.target.matches('#userBtn')) {
+        document.getElementById("dropdownMenu").style.display = "none";
+      }
+    });
+  </script>
+  
+</body>
+</html>
