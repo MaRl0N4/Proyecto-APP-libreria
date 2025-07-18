@@ -1,0 +1,107 @@
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #009999;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.menu-btn {
+  margin-left: 20px;
+  padding: 8px 16px;
+  background-color: #48c3cc;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.volver-btn {
+  background-color: #6c757d;
+}
+
+.container {
+  display: flex;
+  padding: 40px;
+  justify-content: center;
+  gap: 60px;
+}
+
+.perfil-izquierda {
+  text-align: center;
+}
+
+.imagen-usuario img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+.nombre-usuario {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+.perfil-derecha {
+  width: 400px;
+}
+
+.perfil-derecha label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.perfil-derecha input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.botones {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editar {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.grabar {
+  background-color: #28a745;
+  color: white;
+}
+ 

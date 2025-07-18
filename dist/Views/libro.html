@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Libros</title>
+    <link rel="stylesheet" href="CSS/libro.css"/>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <img src="IMG/logo.png" alt="Logo">
+    </div>
+
+    <a class="menu" href="index.html"> MENU </a> 
+
+   
+  </header>
+
+  <main class="contenido">
+
+    <section class="consulta">
+      <div class="titulo-consulta">
+        <label>LIBROS</label>
+        <button class="btn-consultar">
+          CONSULTAR <span></span>
+        </button>
+      </div>
+
+      <div class="buscar-id">
+        <label for="buscar">BUSCAR POR ISBN:</label>
+        <input type="text" id="buscar" placeholder="ej: 978-3-16-148410-0">
+      </div>
+    </section>
+
+    <div id="mensaje" style="display:none; padding: 10px; margin-top: 10px;"></div>
+
+    <section class="lista">
+      <p>Lista de Libros:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Categoría</th>
+            <th>Editorial</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Fecha</th>
+            <th>Stock</th>
+            <th>Best Seller</th>
+            <th>Estado</th>
+            <th class="acciones">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí irán los libros consultados -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="acciones-finales">
+      <button class="btn-agregar">AGREGAR</button>
+    </section>
+
+  </main>
+
+  <script src="JS/libro.js" defer></script>
+
+  <script>
+    // Mostrar / ocultar menú de usuario
+    document.getElementById("userBtn").addEventListener("click", function () {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    // Cierra el menú si se hace clic fuera
+    window.addEventListener("click", function (e) {
+      if (!e.target.matches('#userBtn')) {
+        document.getElementById("dropdownMenu").style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Cliente</title>
+    <link rel="stylesheet" href="CSS/cliente.css"/>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <img src="IMG/logo.png" alt="Logo">
+    </div>
+
+    <a class="menu" href="index.html"> MENU </a> 
+
+    
+  </header>
+
+  <main class="contenido">
+
+    <section class="consulta">
+      <div class="titulo-consulta">
+        <label>CLIENTES</label>
+        <button class="btn-consultar">
+          CONSULTAR <span></span>
+        </button>
+      </div>
+
+      <div class="buscar-id">
+        <label for="buscar">BUSCAR POR ID:</label>
+        <input type="text" id="buscar" placeholder="ej: 1"  >
+      </div>
+    </section>
+
+    <div id="mensaje" style="display:none; padding: 10px; margin-top: 10px;"></div>
+
+    <section class="lista">
+      <p>Lista de Clientes:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Estado</th>
+            <th class="acciones">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí irán los clientes consultados -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="acciones-finales">
+      <button class="btn-agregar">AGREGAR</button>
+    </section>
+
+  </main>
+
+  <script src="JS/cliente.js" defer></script>
+
+  <script>
+    document.getElementById("userBtn").addEventListener("click", function () {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    window.addEventListener("click", function (e) {
+      if (!e.target.matches('#userBtn')) {
+        document.getElementById("dropdownMenu").style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

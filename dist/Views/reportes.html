@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reportes</title>
+  <link rel="stylesheet" href="CSS/reportes.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="IMG/logo.png" alt="Logo" />
+    </div>
+    <a class="menu" href="index.html">MENU</a>
+  </header>
+
+  <main class="contenido">
+    <section class="reportes">
+      <h2>REPORTES</h2>
+      <label for="tipo-reporte">Seleccionar tipo de reporte:</label>
+      <select id="tipo-reporte"></select>
+      <select id="orden-select" style="margin-left:10px; display:none;"></select>
+      <select id="categoria-select" style="margin-left:10px; display:none;"></select>
+
+      <div id="reporte-tabla-container" style="margin-top: 20px;"></div>
+
+      <div id="acciones-reporte" style="margin-top: 20px;">
+        <button id="descargar-reporte">DESCARGAR REPORTE (PDF / CSV)</button>
+      </div>
+    </section>
+
+  </main>
+
+    <!-- MODAL para seleccionar formato de descarga -->
+<div class="modal-background" id="modal-formato" >
+    <div class="modal-content" >
+        <h3>Seleccione el formato de descarga</h3>
+        <button id="btn-descargar-pdf" style="margin: 10px;">📄 PDF</button>
+        <button id="btn-descargar-csv" style="margin: 10px;">📑 CSV</button>
+        <br>
+        <button id="cerrar-modal-formato" style="margin-top: 20px;">Cancelar</button>
+  
+</div>
+  <script src="JS/reportes.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</body>
+</html>
